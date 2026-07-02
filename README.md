@@ -15,7 +15,6 @@ The demo deck is self-documenting: each slide shows one feature.
 |---|---|
 | 1-D navigation | any arrow / space steps the talk (`navigationMode: 'linear'`) |
 | Slide numbers, no progress bar | `slideNumber: 'c/t'`, `progress: false` |
-| Menu / overview | ☰ button or `M`; `Esc` for the grid |
 | Speaker view (notes, next, timer) | `S` |
 | Draw on slides | `C` pen · `B` blank board |
 | Zoom a figure | `Alt`+click |
@@ -60,10 +59,11 @@ Group slides into a **section** by wrapping them in a horizontal `<section>` wit
 </section>
 ```
 
-This structure is what makes the **Esc overview** a grid **grouped by section**
-(one column per section). Navigation stays 1-D — every arrow steps the whole
-sequence — and in the overview you **scroll** to move. Title and closing slides use a
-bare `<section>` (no `data-section`) with `class="title-slide plain"` and get no chrome.
+This structure is what makes the **map view** (`Esc` or the grid button) a grid
+**grouped by section** (one column per section). Navigation stays 1-D — every arrow steps
+the whole sequence — and in the map you **drag to pan, scroll/pinch to zoom, click a slide**.
+Title and closing slides use a bare `<section>` (no `data-section`) with
+`class="title-slide plain"` and get no chrome.
 
 ---
 
@@ -74,7 +74,7 @@ index.html                 the deck (edit the <section> slides here)
 css/theme-cambridge.css     colours & components (change the palette here)
 js/talk.js                  reveal.js configuration
 js/narration.js             narration playback (load-only)
-dist/ , plugin/             vendored reveal.js + menu/chalkboard (offline)
+dist/ , plugin/             vendored reveal.js + chalkboard (offline)
 vendor/katex/               vendored KaTeX (offline math)
 narration/manifest.json     which audio clips exist, and where
 narration/audio/*.m4a        sample narration clips
@@ -146,5 +146,5 @@ python3 -c "import segno; segno.make('https://YOUR.URL/').save('assets/qr.svg', 
 
 ## Keyboard shortcuts
 
-`→ ↓ Space` next · `← ↑` prev · `Esc` overview · `M` menu · `S` speaker ·
+`→ ↓ Space` next · `← ↑` prev · `Esc` map view · `S` speaker ·
 `F` fullscreen · `B`/`.` black · `C` pen · `Alt`+click zoom · `?` help

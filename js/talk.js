@@ -23,19 +23,13 @@ window.addEventListener('DOMContentLoaded', function () {
     hideInactiveCursor: true,
     hideCursorTime: 2500,
     overview: false,                // replaced by the custom pan/zoom map view
-    plugins: [RevealNotes, RevealHighlight, RevealZoom, RevealMenu, RevealChalkboard],
+    plugins: [RevealNotes, RevealHighlight, RevealZoom, RevealChalkboard],
 
     keyboard: {                     // any arrow steps the linear sequence
       38: function () { Reveal.prev(); },   // up
       40: function () { Reveal.next(); }    // down
     },
 
-    menu: {
-      side: 'left', width: 'normal', numbers: true,
-      titleSelector: 'h2', hideMissingTitles: true, markers: true,
-      custom: false, themes: false, transitions: false,
-      openButton: true, openSlideNumber: false, keyboard: true, sticky: false, autoOpen: false
-    },
     chalkboard: {
       boardmarkerWidth: 3, chalkWidth: 5, chalkEffect: 0.6,
       color: ['rgba(0,62,116,1)', 'rgba(255,255,255,1)'],

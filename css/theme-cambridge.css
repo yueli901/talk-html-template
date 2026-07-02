@@ -174,8 +174,6 @@
   background:#fff; color:var(--camb); border:2px solid var(--camb); cursor:pointer;
   box-shadow:0 4px 14px rgba(0,62,116,.2); }
 #mapBtn svg{ width:20px; height:20px; }
-/* move the menu (☰) button out of the top-left so it clears Play-narrated */
-.slide-menu-button{ top:44px !important; right:64px !important; left:auto !important; }
 
 #mapOverlay{ position:fixed; inset:0; z-index:60; display:none; overflow:hidden;
   background:#eef2f6; cursor:grab; }
@@ -222,9 +220,8 @@
 /* in map mode, hide the presenting chrome and the arrow controls */
 body.map-open .reveal .controls,
 body.map-open #headline, body.map-open #footline,
-body.map-open .floating-btn, body.map-open #mapBtn,
-body.map-open .slide-menu-button{ display:none !important; }
+body.map-open .floating-btn, body.map-open #mapBtn{ display:none !important; }
 
 body.overview-active .floating-btn{ display:none !important; }
 
-@media print{ .floating-btn,#headline,#footline,#mapBtn,.slide-menu-button,.anim-demo{ display:none !important; } }
+@media print{ .floating-btn,#headline,#footline,#mapBtn,.anim-demo{ display:none !important; } }

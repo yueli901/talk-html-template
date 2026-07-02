@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function () {
     navigationMode: 'linear',       // 1-D: step through every slide in order
     hideInactiveCursor: true,
     hideCursorTime: 2500,
-    overview: true,
+    overview: false,                // replaced by the custom pan/zoom map view
     plugins: [RevealNotes, RevealHighlight, RevealZoom, RevealMenu, RevealChalkboard],
 
     keyboard: {                     // any arrow steps the linear sequence
@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function () {
     buildSectionIndex();
     updateChrome();
     Reveal.on('slidechanged', updateChrome);
-    setupOverview();
+    if (window.MapView) MapView.init();
     if (window.Narration) Narration.init();
     setupPdfButton();
     registerServiceWorker();
@@ -90,28 +90,6 @@ window.addEventListener('DOMContentLoaded', function () {
       (TALK.author || 'Presenter') + (TALK.institution ? ' (' + TALK.institution + ')' : '');
     fl.querySelector('.t').textContent = TALK.title || document.title;
     fl.querySelector('.d').textContent = (TALK.date ? TALK.date + '  ·  ' : '') + n + ' / ' + N;
-  }
-
-  /* ---- Esc overview: grouped by section, navigable by scrolling ---- */
-  function setupOverview() {
-    var lock = false;
-    function onWheel(e) {
-      e.preventDefault();
-      if (lock) return; lock = true;
-      window.setTimeout(function () { lock = false; }, 220);
-      if (e.deltaY > 0 || e.deltaX > 0) Reveal.next(); else Reveal.prev();
-    }
-    Reveal.on('overviewshown', function () {
-      document.body.classList.add('overview-active');
-      document.getElementById('headline').classList.add('hidden');
-      document.getElementById('footline').classList.add('hidden');
-      window.addEventListener('wheel', onWheel, { passive: false });
-    });
-    Reveal.on('overviewhidden', function () {
-      document.body.classList.remove('overview-active');
-      window.removeEventListener('wheel', onWheel);
-      updateChrome();
-    });
   }
 
   /* ---- offline KaTeX ---- */

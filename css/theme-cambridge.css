@@ -156,7 +156,7 @@
 .floating-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(0,62,116,.35); }
 .floating-btn svg{ width:18px; height:18px; }
 #dlPdf{ right:26px; bottom:calc(var(--fl-h) + 22px); background:var(--camb); color:#fff; border-bottom:none; }
-#playNarrated{ left:26px; bottom:calc(var(--fl-h) + 22px); background:#fff; color:var(--camb); border:2px solid var(--camb); }
+#playNarrated{ top:44px; left:16px; background:#fff; color:var(--camb); border:2px solid var(--camb); font-size:14px; padding:8px 14px; }
 #playNarrated.playing{ background:var(--camb); color:#fff; }
 .floating-btn.hidden{ opacity:0; pointer-events:none; }
 
@@ -166,6 +166,65 @@
 .reveal .qr img{ width:150px; height:150px; box-shadow:none; border-radius:6px; }
 .reveal .qr span{ font-size:.5em; color:var(--muted); }
 
+/* ============================================================
+   Map view — pan/zoom map of all slides (js/mapview.js)
+   ============================================================ */
+#mapBtn{ position:fixed; top:44px; right:16px; z-index:40; width:40px; height:40px; padding:0;
+  display:inline-flex; align-items:center; justify-content:center; border-radius:10px;
+  background:#fff; color:var(--camb); border:2px solid var(--camb); cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,62,116,.2); }
+#mapBtn svg{ width:20px; height:20px; }
+/* move the menu (☰) button out of the top-left so it clears Play-narrated */
+.slide-menu-button{ top:44px !important; right:64px !important; left:auto !important; }
+
+#mapOverlay{ position:fixed; inset:0; z-index:60; display:none; overflow:hidden;
+  background:#eef2f6; cursor:grab; }
+#mapOverlay.open{ display:block; }
+#mapOverlay.grabbing{ cursor:grabbing; }
+#mapCanvas{ position:absolute; top:0; left:0; transform-origin:0 0; will-change:transform; }
+
+.map-col-label{ position:absolute; font-family:'LM Sans',sans-serif; font-weight:700;
+  font-size:17px; color:var(--camb); text-align:center; }
+.map-tile{ position:absolute; width:384px; height:216px; border:2px solid #cdd6df; border-radius:10px;
+  overflow:hidden; background:#fff; box-shadow:0 5px 16px rgba(0,0,0,.10); cursor:pointer;
+  transition:border-color .12s, box-shadow .12s; }
+.map-tile:hover{ border-color:var(--camb); box-shadow:0 10px 26px rgba(0,62,116,.28); }
+.map-tile.is-divider{ background:var(--camb); }
+.map-thumb{ width:960px; height:540px; transform:scale(.4); transform-origin:top left; overflow:hidden; }
+.map-tile.is-divider .map-thumb{ background:var(--camb); }
+/* neutralise reveal's per-slide positioning on the clones */
+#mapOverlay .map-thumb > section{ display:block !important; position:relative !important;
+  top:0 !important; left:0 !important; transform:none !important; opacity:1 !important;
+  visibility:visible !important; width:960px !important; height:540px !important;
+  box-sizing:border-box; padding:46px 54px; text-align:left; }
+#mapOverlay .map-thumb section.plain,
+#mapOverlay .map-thumb section.section-divider{ display:flex !important; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; }
+#mapOverlay .map-thumb h2{ color:var(--camb); border-bottom:3px solid var(--camb);
+  padding-bottom:.15em; margin-bottom:.5em; }
+#mapOverlay .map-tile.is-divider h2,
+#mapOverlay .map-tile.is-plain h2{ border:none; }
+#mapOverlay .map-tile.is-divider h2{ color:#fff; }
+
+#mapClose,#mapZoom button{ font-family:'LM Sans',sans-serif; cursor:pointer; border:none;
+  background:var(--camb); color:#fff; box-shadow:0 4px 14px rgba(0,62,116,.3); }
+#mapClose{ position:fixed; top:16px; right:16px; z-index:62; border-radius:10px;
+  padding:9px 15px; font-size:15px; font-weight:700; }
+#mapZoom{ position:fixed; right:20px; bottom:20px; z-index:62; display:flex; flex-direction:column; gap:8px; }
+#mapZoom button{ width:42px; height:42px; border-radius:10px; font-size:22px; line-height:1; }
+#mapHint{ position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:62;
+  font-family:'LM Sans',sans-serif; font-size:13px; color:var(--muted);
+  background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:6px 16px; }
+#mapOverlay:not(.open) ~ #mapClose,
+#mapOverlay:not(.open) ~ #mapZoom,
+#mapOverlay:not(.open) ~ #mapHint{ display:none; }
+
+/* in map mode, hide the presenting chrome and the arrow controls */
+body.map-open .reveal .controls,
+body.map-open #headline, body.map-open #footline,
+body.map-open .floating-btn, body.map-open #mapBtn,
+body.map-open .slide-menu-button{ display:none !important; }
+
 body.overview-active .floating-btn{ display:none !important; }
 
-@media print{ .floating-btn,#headline,#footline,.anim-demo{ display:none !important; } }
+@media print{ .floating-btn,#headline,#footline,#mapBtn,.slide-menu-button,.anim-demo{ display:none !important; } }

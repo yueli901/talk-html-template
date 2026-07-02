@@ -22,8 +22,8 @@
   <script>
     window.TALK = {
       author: "Presenter Name",
-      institution: "University of Cambridge",
-      title: "Your Talk Title Here",
+      institution: "Your Institution",
+      title: "Your Talk Title",
       date: "Month Year"
     };
   </script>
@@ -41,9 +41,9 @@
           <div class="col-60">
             <p class="byline">
               <strong>Presenter Name</strong><br>
-              <span class="affil">Martin Centre for Architectural and Urban Studies</span><br>
-              <span class="affil">Department of Architecture</span><br>
-              <span class="affil">University of Cambridge</span>
+              <span class="affil">Research Group or Affiliation</span><br>
+              <span class="affil">Department</span><br>
+              <span class="affil">Institution</span>
             </p>
             <p class="muted" style="font-size:.55em; margin-top:.8em;">
               <kbd>F</kbd> fullscreen · <kbd>S</kbd> speaker · <kbd>Esc</kbd> overview · <kbd>?</kbd> help
@@ -111,13 +111,13 @@
         </div>
       </section>
       <section>
-        <h2>The overview (press <kbd>Esc</kbd>)</h2>
+        <h2>The map view (press <kbd>Esc</kbd>)</h2>
         <ul>
-          <li>slides are laid out as a <strong>grid grouped by section</strong> (each column is a section, led by its blue title tile)</li>
-          <li><strong>scroll</strong> to move through the grid — no need to click the arrows</li>
-          <li>click any slide, or press <kbd>Esc</kbd> again, to jump there</li>
+          <li>all slides are laid out as a <strong>map, grouped by section</strong> (one column per section)</li>
+          <li><strong>drag</strong> to pan · <strong>scroll / pinch</strong> to zoom — smoothly, like a map</li>
+          <li><strong>click a slide</strong> to jump there; <kbd>Esc</kbd> again to return</li>
         </ul>
-        <p class="note">Try it: press <kbd>Esc</kbd> now, scroll, then <kbd>Esc</kbd> to return.</p>
+        <p class="note">Try it: press <kbd>Esc</kbd> now, pan and zoom, then click a slide.</p>
       </section>
     </section>
 
@@ -308,7 +308,7 @@ Reveal.initialize({
       <section class="title-slide plain">
         <span class="title-box"><h1>Thank you</h1></span>
         <p class="subtitle">Questions &amp; discussion</p>
-        <p class="byline"><strong>Presenter Name</strong> · Martin Centre for Architectural and Urban Studies, University of Cambridge</p>
+        <p class="byline"><strong>Presenter Name</strong> · Department, Institution</p>
       </section>
     </section>
 
@@ -329,6 +329,15 @@ Reveal.initialize({
   <span class="lbl">Play narrated</span>
 </button>
 
+<!-- map view (grid of all slides, pan/zoom) -->
+<button id="mapBtn" aria-label="Map view (Esc)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+</button>
+<div id="mapOverlay" class="reveal"><div id="mapCanvas"></div></div>
+<button id="mapClose">&#10005;&nbsp; Close</button>
+<div id="mapZoom"><button id="mapZoomIn" aria-label="Zoom in">+</button><button id="mapZoomOut" aria-label="Zoom out">&minus;</button></div>
+<div id="mapHint">drag to pan &nbsp;·&nbsp; scroll / pinch to zoom &nbsp;·&nbsp; click a slide</div>
+
 <script src="dist/reveal.js"></script>
 <script src="dist/plugin/notes.js"></script>
 <script src="dist/plugin/highlight.js"></script>
@@ -337,6 +346,7 @@ Reveal.initialize({
 <script src="plugin/chalkboard/plugin.js"></script>
 <script src="vendor/katex/katex.min.js"></script>
 <script src="vendor/katex/contrib/auto-render.min.js"></script>
+<script src="js/mapview.js"></script>
 <script src="js/narration.js"></script>
 <script src="js/talk.js"></script>
 </body>

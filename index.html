@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Talk Template — reveal.js</title>
+  <meta name="theme-color" content="#003E74">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+
+  <!-- reveal core + base theme -->
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/white.css" id="theme">
+  <!-- plugins -->
+  <link rel="stylesheet" href="plugin/menu/menu.css">
+  <link rel="stylesheet" href="plugin/chalkboard/style.css">
+  <link rel="stylesheet" href="dist/plugin/highlight/monokai.css">
+  <!-- offline math -->
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <!-- Cambridge-blue overrides (must load last) -->
+  <link rel="stylesheet" href="css/theme-cambridge.css">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1 · TITLE -->
+    <section class="title-slide">
+      <h1>Your Talk Title Here</h1>
+      <p class="subtitle">A reusable reveal.js template for browser-based talks</p>
+      <div class="cols" style="align-items:center; margin-top:.8em;">
+        <div class="col-60">
+          <p class="byline">
+            <strong>Presenter Name</strong><br>
+            <span class="affil">Department · Institution</span><br>
+            <span class="affil">Month Year</span>
+          </p>
+          <p class="muted" style="font-size:.6em; margin-top:1em;">
+            Press <kbd>F</kbd> fullscreen · <kbd>S</kbd> speaker view · <kbd>Esc</kbd> overview · <kbd>?</kbd> help
+          </p>
+        </div>
+        <div class="col-40 center">
+          <span class="qr">
+            <img src="assets/qr.svg" alt="QR code to this talk">
+            <span>scan to open on your phone</span>
+          </span>
+        </div>
+      </div>
+      <aside class="notes">Welcome. The floating button downloads the PDF; the QR opens this deck on phones.</aside>
+    </section>
+
+    <!-- 2 · WHAT IS THIS -->
+    <section>
+      <h2 class="ruled">What this template gives you</h2>
+      <div class="cols">
+        <ul>
+          <li><strong>Pure static</strong> — hosts free on GitHub Pages</li>
+          <li><strong>Works offline</strong> — installable, no internet after first load</li>
+          <li><strong>1-D navigation</strong> — any arrow steps the talk</li>
+          <li><strong>Slide numbers</strong>, no progress bar</li>
+          <li><strong>Speaker view</strong> with notes &amp; timer</li>
+        </ul>
+        <ul>
+          <li><strong>Offline math</strong> via KaTeX</li>
+          <li><strong>Draw on slides</strong> (chalkboard)</li>
+          <li><strong>Menu / overview</strong> to jump anywhere</li>
+          <li><strong>Floating PDF download</strong> + <strong>QR</strong></li>
+          <li><strong>Narration playback</strong> from object storage</li>
+        </ul>
+      </div>
+      <p class="note" style="margin-top:.4em;">Everything below is a live demo of one feature. Navigate with the arrows.</p>
+    </section>
+
+    <!-- 3 · NAVIGATION -->
+    <section>
+      <h2 class="ruled">Navigating (1-D / linear)</h2>
+      <div class="cols">
+        <div>
+          <p>Every direction moves one step:</p>
+          <ul>
+            <li><kbd>→</kbd> <kbd>↓</kbd> <kbd>Space</kbd> — next</li>
+            <li><kbd>←</kbd> <kbd>↑</kbd> — previous</li>
+            <li><kbd>Esc</kbd> — overview grid</li>
+            <li><kbd>M</kbd> or the ☰ button — menu / table of contents</li>
+          </ul>
+        </div>
+        <div>
+          <p>For presenting:</p>
+          <ul>
+            <li><kbd>S</kbd> — speaker view (notes + next + timer)</li>
+            <li><kbd>F</kbd> — fullscreen · <kbd>B</kbd>/<kbd>.</kbd> — black</li>
+            <li><kbd>Alt</kbd>+click — zoom into a figure</li>
+            <li>Swipe on tablets · deep-link every slide via the URL <code>#/n</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · FRAGMENTS -->
+    <section>
+      <h2 class="ruled">Step-by-step reveals (fragments)</h2>
+      <p>Reveal points one at a time — good for building an argument:</p>
+      <ul>
+        <li class="fragment">First this idea appears…</li>
+        <li class="fragment">then this one…</li>
+        <li class="fragment"><span class="badge b-mukara">tip</span> fragments can also <em>highlight</em>, <em>grow</em>, or <em>fade</em>.</li>
+      </ul>
+      <p class="fragment ok" style="margin-top:.4em;">Press the arrow again — the deck advances only when the fragments run out.</p>
+      <aside class="notes">Use fragments sparingly; one idea per click.</aside>
+    </section>
+
+    <!-- 5 · MATH -->
+    <section>
+      <h2 class="ruled">Mathematics (KaTeX, offline)</h2>
+      <p>Inline like $\hat{y} = f(X)$ and displayed:</p>
+      $$ \frac{\partial L}{\partial w} = \frac{\partial L}{\partial \hat{y}}\,\frac{\partial \hat{y}}{\partial h}\,\frac{\partial h}{\partial w} $$
+      $$ P(j\mid i) = \frac{e^{-\beta c_{ij}}}{\sum_k e^{-\beta c_{ik}}} \qquad T_{ij} = k\,\frac{O_i D_j}{f(c_{ij})} $$
+      <p class="muted" style="font-size:.65em;">Written as normal <code>$…$</code> / <code>$$…$$</code>; rendered locally, no internet needed.</p>
+    </section>
+
+    <!-- 6 · COLUMNS + FIGURE -->
+    <section>
+      <h2 class="ruled">Columns &amp; figures</h2>
+      <div class="cols">
+        <div class="col-40">
+          <p>Put text beside a figure with the <code>.cols</code> helper.</p>
+          <ul>
+            <li>images get soft shadows</li>
+            <li>captions are auto-styled</li>
+            <li>diagrams can be inline SVG (crisp, themeable)</li>
+          </ul>
+        </div>
+        <div class="col-60 center">
+          <figure>
+            <svg viewBox="0 0 300 170" width="88%" role="img" aria-label="network diagram">
+              <line x1="60" y1="120" x2="150" y2="60"  stroke="#003E74" stroke-width="3"/>
+              <line x1="150" y1="60" x2="240" y2="110" stroke="#003E74" stroke-width="3"/>
+              <line x1="60" y1="120" x2="240" y2="110" stroke="#003E74" stroke-width="3"/>
+              <circle cx="60"  cy="120" r="16" fill="#4682B4"/>
+              <circle cx="150" cy="60"  r="16" fill="#B48C3C"/>
+              <circle cx="240" cy="110" r="16" fill="#006E5A"/>
+            </svg>
+            <figcaption>An inline-SVG diagram — no image file, styles with the theme.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · ANIMATED DIAGRAM -->
+    <section>
+      <h2 class="ruled">Animated diagrams</h2>
+      <div class="cols">
+        <div class="col-40">
+          <p>SVG animates with no JavaScript — loops offline.</p>
+          <p class="muted" style="font-size:.7em;">Here a marker traces a curve (think: a value rolling into a minimum).</p>
+        </div>
+        <div class="col-60 center">
+          <svg class="anim-demo" viewBox="0 0 320 190" width="86%">
+            <path id="bowl" d="M20,30 C110,210 210,210 300,30" fill="none" stroke="#003E74" stroke-width="3"/>
+            <circle r="9" fill="#B48C3C">
+              <animateMotion dur="2.6s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
+                <mpath href="#bowl"/>
+              </animateMotion>
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · CODE -->
+    <section>
+      <h2 class="ruled">Code highlighting</h2>
+      <pre><code class="language-javascript" data-trim data-line-numbers>
+// add a slide: just drop a &lt;section&gt; into index.html
+Reveal.initialize({
+  navigationMode: 'linear',   // 1-D
+  progress: false,            // no progress bar
+  slideNumber: 'c/t',         // current / total
+  plugins: [RevealHighlight, RevealMenu, RevealChalkboard]
+});
+      </code></pre>
+    </section>
+
+    <!-- 9 · CHALKBOARD -->
+    <section>
+      <h2 class="ruled">Draw on your slides</h2>
+      <div class="cols">
+        <div>
+          <ul>
+            <li><kbd>C</kbd> — toggle the pen (annotate the current slide)</li>
+            <li><kbd>B</kbd> — a blank chalkboard canvas</li>
+            <li><kbd>Del</kbd> — clear · drawings persist while you navigate</li>
+          </ul>
+          <p class="note">Try it now: press <kbd>C</kbd> and scribble, then <kbd>C</kbd> again to put the pen away.</p>
+        </div>
+        <div class="center vh">
+          <div class="card" style="font-size:.8em;">✎ live ink in Cambridge blue</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · TABLES + CALLOUTS -->
+    <section>
+      <h2 class="ruled">Tables &amp; callouts</h2>
+      <div class="cols">
+        <table>
+          <thead><tr><th>Feature</th><th>Key</th></tr></thead>
+          <tbody>
+            <tr><td>Overview</td><td><kbd>Esc</kbd></td></tr>
+            <tr><td>Speaker view</td><td><kbd>S</kbd></td></tr>
+            <tr><td>Pen</td><td><kbd>C</kbd></td></tr>
+            <tr><td>Menu</td><td><kbd>M</kbd></td></tr>
+          </tbody>
+        </table>
+        <div>
+          <p class="note">A <strong>note</strong> — neutral emphasis.</p>
+          <p class="ok"><strong>Good</strong> — a positive/result callout.</p>
+          <p class="alert"><strong>Watch out</strong> — a caveat callout.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · NARRATION -->
+    <section>
+      <h2 class="ruled">Narration playback</h2>
+      <div class="cols">
+        <div>
+          <p>Pre-record audio, host it on object storage, list it in a manifest — the page plays it and auto-advances.</p>
+          <ul>
+            <li>the <strong>▶ Play narrated</strong> button (bottom-left) appears only if audio exists</li>
+            <li>one clip per slide → re-record any slide independently</li>
+            <li>no recording in the browser; the page only <em>loads</em> and plays</li>
+          </ul>
+          <p class="alert" style="font-size:.8em;">This demo ships 3 sample clips — press <strong>▶ Play narrated</strong>.</p>
+        </div>
+        <div>
+<pre><code class="language-json" data-trim>
+// narration/manifest.json
+{
+  "base": "https://cdn.example.com/talk/",
+  "clips": { "0":"s00.m4a", "1":"s01.m4a", "2":"s02.m4a" }
+}
+</code></pre>
+          <p class="muted" style="font-size:.6em;">Object-storage bucket must allow CORS from this origin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · OFFLINE -->
+    <section>
+      <h2 class="ruled">Offline &amp; installable</h2>
+      <div class="cols">
+        <div>
+          <p>A service worker caches the deck on first load.</p>
+          <ul>
+            <li>give the talk with <strong>no internet</strong> once loaded</li>
+            <li>“Add to Home Screen / Install” → runs like an app</li>
+            <li>reliable when conference Wi-Fi fails</li>
+          </ul>
+        </div>
+        <div class="center vh">
+          <div class="card" style="font-size:.8em;">✈ works in airplane mode<br><span class="muted" style="font-size:.8em;">after the first visit</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · DOWNLOAD + QR -->
+    <section>
+      <h2 class="ruled">Share &amp; download</h2>
+      <div class="cols">
+        <div>
+          <ul>
+            <li>the floating <strong>Download PDF</strong> button (first slide) serves <code>slides.pdf</code></li>
+            <li>the <strong>QR</strong> on the title slide opens the live URL on phones</li>
+            <li>the PDF is generated <em>from this HTML</em> — one source of truth</li>
+          </ul>
+        </div>
+        <div class="center">
+          <span class="qr"><img src="assets/qr.svg" alt="QR"><span>your live URL</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · QUICK START -->
+    <section>
+      <h2 class="ruled">Reuse this template</h2>
+      <ol>
+        <li>Click <strong>Use this template</strong> on GitHub → new repo</li>
+        <li>Edit the <code>&lt;section&gt;</code> slides in <code>index.html</code></li>
+        <li>Drop figures in <code>assets/</code>, set the QR to your URL</li>
+        <li>Enable <strong>Settings → Pages → main / root</strong></li>
+        <li>(optional) add narration clips + <code>narration/manifest.json</code></li>
+      </ol>
+      <p class="note">Full instructions in <code>README.md</code>.</p>
+    </section>
+
+    <!-- 15 · CLOSE -->
+    <section class="title-slide center">
+      <h1>Thank you</h1>
+      <p class="subtitle">Questions &amp; discussion</p>
+      <p class="byline"><strong>Presenter Name</strong><br><span class="affil">Institution · Month Year</span></p>
+    </section>
+
+  </div>
+</div>
+
+<!-- floating controls -->
+<a id="dlPdf" class="floating-btn" href="slides.pdf" download>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Download PDF
+</a>
+<button id="playNarrated" class="floating-btn hidden" aria-label="Play narrated">
+  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+  <span class="lbl">Play narrated</span>
+</button>
+
+<!-- reveal core -->
+<script src="dist/reveal.js"></script>
+<!-- plugins: reveal core plugins are prebuilt UMD in dist/plugin/ -->
+<script src="dist/plugin/notes.js"></script>
+<script src="dist/plugin/highlight.js"></script>
+<script src="dist/plugin/zoom.js"></script>
+<!-- third-party plugins (UMD) -->
+<script src="plugin/menu/menu.js"></script>
+<script src="plugin/chalkboard/plugin.js"></script>
+<!-- offline math -->
+<script src="vendor/katex/katex.min.js"></script>
+<script src="vendor/katex/contrib/auto-render.min.js"></script>
+<!-- app -->
+<script src="js/narration.js"></script>
+<script src="js/talk.js"></script>
+</body>
+</html>

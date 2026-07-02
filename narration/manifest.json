@@ -1,0 +1,9 @@
+{
+  "base": "narration/",
+  "dwellMs": 2500,
+  "clips": {
+    "0": "audio/s00.m4a",
+    "1": "audio/s01.m4a",
+    "2": "audio/s02.m4a"
+  }
+}

@@ -1,14 +1,20 @@
 /* Offline service worker — cache-first for same-origin assets.
    Cross-origin requests (e.g. narration audio on object storage) pass through. */
-const CACHE = 'talk-template-v1';
+const CACHE = 'talk-template-v2';
 const CORE = [
   './', 'index.html',
   'css/theme-cambridge.css',
   'dist/reset.css', 'dist/reveal.css', 'dist/theme/white.css',
   'dist/reveal.js',
+  'dist/plugin/notes.js', 'dist/plugin/highlight.js', 'dist/plugin/zoom.js',
+  'dist/plugin/highlight/monokai.css',
+  'plugin/menu/menu.js', 'plugin/menu/menu.css',
+  'plugin/chalkboard/plugin.js', 'plugin/chalkboard/style.css',
   'js/talk.js', 'js/narration.js',
   'vendor/katex/katex.min.css', 'vendor/katex/katex.min.js',
-  'vendor/katex/contrib/auto-render.min.js'
+  'vendor/katex/contrib/auto-render.min.js',
+  'vendor/fonts/lmsans-regular.woff', 'vendor/fonts/lmsans-bold.woff',
+  'vendor/fonts/lmsans-oblique.woff', 'vendor/fonts/lmsans-boldoblique.woff'
 ];
 
 self.addEventListener('install', (e) => {

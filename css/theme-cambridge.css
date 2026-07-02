@@ -1,9 +1,22 @@
 /* ============================================================
-   Cambridge-blue theme overrides for reveal.js
+   Cambridge-blue theme for reveal.js — Beamer (CambridgeUS) look
    Loaded AFTER dist/theme/white.css
    ============================================================ */
+
+/* ---- Latin Modern Sans (the Beamer font), vendored offline ---- */
+@font-face{ font-family:'LM Sans'; font-weight:400; font-style:normal;
+  src:url('../vendor/fonts/lmsans-regular.woff') format('woff'); font-display:swap; }
+@font-face{ font-family:'LM Sans'; font-weight:700; font-style:normal;
+  src:url('../vendor/fonts/lmsans-bold.woff') format('woff'); font-display:swap; }
+@font-face{ font-family:'LM Sans'; font-weight:400; font-style:italic;
+  src:url('../vendor/fonts/lmsans-oblique.woff') format('woff'); font-display:swap; }
+@font-face{ font-family:'LM Sans'; font-weight:700; font-style:italic;
+  src:url('../vendor/fonts/lmsans-boldoblique.woff') format('woff'); font-display:swap; }
+
 :root{
-  --camb:#003E74;        /* Cambridge blue      */
+  --camb:#003E74;
+  --camb-mid:#15558f;
+  --camb-deep:#0c4a80;
   --camb-light:#6AADE4;
   --gold:#B48C3C;
   --mukara:#4682B4;
@@ -13,12 +26,14 @@
   --muted:#5b6b7a;
   --line:#dfe4ea;
   --soft:#f3f6f9;
+  --hl-h:34px;     /* headline height */
+  --fl-h:26px;     /* footline height */
 }
 
 .reveal{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family:'LM Sans',-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color:var(--ink);
-  font-size:32px;
+  font-size:30px;
 }
 .reveal .slides{ text-align:left; }
 .reveal .slides section{ line-height:1.35; }
@@ -26,13 +41,16 @@
 /* ---- headings ---- */
 .reveal h1,.reveal h2,.reveal h3,.reveal h4{
   color:var(--camb); text-transform:none; font-weight:700;
-  letter-spacing:-0.015em; line-height:1.1; margin:0 0 .5em 0;
+  letter-spacing:-0.01em; line-height:1.12; margin:0 0 .45em 0;
 }
-.reveal h1{ font-size:2.0em; }
-.reveal h2{ font-size:1.5em; }
-.reveal h3{ font-size:1.15em; }
-/* accent rule under a section title */
-.reveal h2.ruled{ padding-bottom:.28em; border-bottom:3px solid var(--camb); }
+.reveal h1{ font-size:1.9em; }
+.reveal h2{ font-size:1.35em; }
+.reveal h3{ font-size:1.1em; }
+/* frametitle: slide h2 with the Beamer rule */
+.reveal .slides section:not(.plain):not(.section-divider) > h2:first-child,
+.reveal h2.ruled{
+  padding-bottom:.22em; border-bottom:3px solid var(--camb); margin-bottom:.55em;
+}
 
 .reveal a{ color:var(--mukara); text-decoration:none; border-bottom:1px solid var(--line); }
 .reveal strong{ color:var(--camb); }
@@ -42,123 +60,112 @@
 
 /* ---- lists ---- */
 .reveal ul{ list-style:none; margin-left:0; }
-.reveal ul li{ position:relative; padding-left:1.1em; margin:.28em 0; }
-.reveal ul li::before{
-  content:""; position:absolute; left:.05em; top:.55em;
-  width:.42em; height:.42em; border-radius:50%; background:var(--camb);
-}
+.reveal ul li{ position:relative; padding-left:1.05em; margin:.26em 0; }
+.reveal ul li::before{ content:""; position:absolute; left:.05em; top:.52em;
+  width:.4em; height:.4em; border-radius:50%; background:var(--camb); }
 .reveal ol{ margin-left:1.1em; }
-.reveal ol li{ margin:.28em 0; }
+.reveal ol li{ margin:.26em 0; }
 .reveal ol li::marker{ color:var(--camb); font-weight:700; }
 
-/* ---- title slide ---- */
-.reveal .title-slide h1{ font-size:2.1em; margin-bottom:.25em; }
-.reveal .title-slide .subtitle{ color:var(--muted); font-size:1.0em; }
-.reveal .title-slide .byline{ margin-top:1.2em; font-size:.72em; color:var(--ink); line-height:1.5; }
-.reveal .title-slide .affil{ color:var(--muted); }
+/* ============================================================
+   Plain slides (title / thank-you): centred, no chrome
+   ============================================================ */
+.reveal .plain{ text-align:center; }
+.reveal .title-box{
+  display:inline-block; background:#fff; border-radius:14px; padding:.7em 1.4em;
+  box-shadow:0 10px 30px rgba(0,0,0,.18); margin-bottom:.9em;
+}
+.reveal .title-box h1{ margin:0; font-size:1.8em; }
+.reveal .plain .subtitle{ color:var(--muted); font-size:.95em; margin:.2em 0 0; }
+.reveal .plain .byline{ margin-top:1.1em; font-size:.7em; color:var(--ink); line-height:1.55; }
+.reveal .plain .affil{ color:var(--muted); }
+
+/* ---- section-divider slides: blue background, big section title ---- */
+.reveal .section-divider{ text-align:center; }
+.reveal .section-divider .kicker{ color:var(--camb-light); font-size:.6em; letter-spacing:.18em;
+  text-transform:uppercase; margin-bottom:.4em; }
+.reveal .section-divider h2{ color:#fff; font-size:1.9em; border:none; margin:0; }
 
 /* ---- layout helpers ---- */
 .reveal .cols{ display:flex; gap:1.1em; align-items:flex-start; }
 .reveal .cols > *{ flex:1 1 0; min-width:0; }
-.reveal .col-40{ flex:0 0 40%; }
-.reveal .col-60{ flex:0 0 60%; }
-.reveal .center{ text-align:center; }
-.reveal .vh{ display:flex; align-items:center; justify-content:center; }
+.reveal .col-40{ flex:0 0 40%; } .reveal .col-60{ flex:0 0 60%; }
+.reveal .center{ text-align:center; } .reveal .vh{ display:flex; align-items:center; justify-content:center; }
 
 /* ---- cards / callouts ---- */
-.reveal .card{
-  background:var(--soft); border:1px solid var(--line);
-  border-radius:12px; padding:.7em .9em;
-}
-.reveal .note{
-  border-left:4px solid var(--camb); background:var(--soft);
-  border-radius:0 10px 10px 0; padding:.55em .8em;
-}
-.reveal .alert{
-  border-left:4px solid var(--mag); background:#fbeef2;
-  border-radius:0 10px 10px 0; padding:.55em .8em;
-}
-.reveal .ok{
-  border-left:4px solid var(--deep); background:#eaf5f1;
-  border-radius:0 10px 10px 0; padding:.55em .8em;
-}
+.reveal .card{ background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:.7em .9em; }
+.reveal .note{ border-left:4px solid var(--camb); background:var(--soft); border-radius:0 10px 10px 0; padding:.55em .8em; }
+.reveal .alert{ border-left:4px solid var(--mag); background:#fbeef2; border-radius:0 10px 10px 0; padding:.55em .8em; }
+.reveal .ok{ border-left:4px solid var(--deep); background:#eaf5f1; border-radius:0 10px 10px 0; padding:.55em .8em; }
 
 /* ---- badges & kbd ---- */
-.reveal .badge{
-  display:inline-block; padding:.06em .55em; border-radius:999px;
-  font-size:.62em; font-weight:700; color:#fff; vertical-align:middle;
-}
-.reveal .badge.b-mukara{ background:var(--mukara); }
-.reveal .badge.b-deep{ background:var(--deep); }
-.reveal .badge.b-gold{ background:var(--gold); }
-.reveal kbd{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.66em;
-  background:#fff; border:1px solid #c7ced6; border-bottom-width:2px;
-  border-radius:6px; padding:.08em .45em; color:var(--ink);
-}
+.reveal .badge{ display:inline-block; padding:.06em .55em; border-radius:999px; font-size:.6em; font-weight:700; color:#fff; vertical-align:middle; }
+.reveal .badge.b-mukara{ background:var(--mukara); } .reveal .badge.b-deep{ background:var(--deep); } .reveal .badge.b-gold{ background:var(--gold); }
+.reveal kbd{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.66em; background:#fff;
+  border:1px solid #c7ced6; border-bottom-width:2px; border-radius:6px; padding:.08em .45em; color:var(--ink); }
 
-/* ---- tables ---- */
+/* ---- tables / code / figures ---- */
 .reveal table{ border-collapse:collapse; font-size:.8em; }
 .reveal table th{ color:#fff; background:var(--camb); padding:.35em .7em; text-align:left; }
 .reveal table td{ padding:.32em .7em; border-bottom:1px solid var(--line); }
 .reveal table tr:nth-child(even) td{ background:var(--soft); }
-
-/* ---- code ---- */
-.reveal pre{ box-shadow:0 4px 18px rgba(0,0,0,.10); border-radius:10px; font-size:.55em; }
-.reveal code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-.reveal :not(pre) > code{
-  background:var(--soft); border:1px solid var(--line); border-radius:6px;
-  padding:.05em .35em; font-size:.82em; color:var(--camb);
-}
-
-/* ---- fragments: gold highlight ---- */
-.reveal .fragment.highlight-current-blue.current-fragment{ color:var(--camb); }
-.reveal .fragment.grow-in{ }
-
-/* ---- figures ---- */
+.reveal pre{ box-shadow:0 4px 18px rgba(0,0,0,.10); border-radius:10px; font-size:.5em; }
+.reveal :not(pre) > code{ background:var(--soft); border:1px solid var(--line); border-radius:6px; padding:.05em .35em; font-size:.82em; color:var(--camb); }
 .reveal figure{ margin:0; }
 .reveal figure img{ border-radius:10px; box-shadow:0 6px 22px rgba(0,0,0,.14); }
-.reveal figcaption{ font-size:.6em; color:var(--muted); margin-top:.3em; }
+.reveal figcaption{ font-size:.58em; color:var(--muted); margin-top:.3em; }
 
-/* ---- slide number ---- */
-.reveal .slide-number{
-  background:var(--camb); color:#fff; font-size:14px; padding:4px 9px;
-  border-radius:8px 0 0 0; right:0; bottom:0;
-}
-/* on-screen arrow controls in Cambridge blue */
+/* our footline shows the page number, so hide reveal's own chip */
+.reveal .slide-number{ display:none; }
 .reveal .controls{ color:var(--camb); }
+
+/* ============================================================
+   Beamer chrome: fixed headline (top) + footline (bottom)
+   populated by js/talk.js; hidden on plain / divider / overview
+   ============================================================ */
+#headline{
+  position:fixed; top:0; left:0; right:0; height:var(--hl-h); z-index:31;
+  display:flex; font-family:'LM Sans',sans-serif; overflow:hidden;
+}
+#headline .sec{ flex:1 1 auto; background:var(--camb-mid); color:#fff;
+  display:flex; align-items:center; padding:0 20px; font-size:15px; font-weight:700; }
+#headline .prog{ flex:0 0 26%; background:var(--camb); color:#cfe0ef;
+  display:flex; align-items:center; justify-content:flex-end; padding:0 18px; font-size:12px; letter-spacing:.03em; }
+
+#footline{
+  position:fixed; bottom:0; left:0; right:0; height:var(--fl-h); z-index:31;
+  display:flex; font-family:'LM Sans',sans-serif; overflow:hidden; font-size:12px;
+}
+#footline .cell{ display:flex; align-items:center; padding:0 16px; color:#e7eff7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#footline .a{ flex:1 1 34%; background:var(--camb); }
+#footline .t{ flex:1 1 40%; background:var(--camb-mid); justify-content:center; }
+#footline .d{ flex:1 1 26%; background:var(--camb-deep); justify-content:flex-end; }
+
+#headline.hidden,#footline.hidden{ display:none; }
+
+/* keep centred content clear of the thin bars */
+.reveal .slides section:not(.plain):not(.section-divider){ padding:calc(var(--hl-h) + 6px) 8px calc(var(--fl-h) + 6px); }
 
 /* ============================================================
    Floating buttons: PDF download + Play-narrated
    ============================================================ */
-.floating-btn{
-  position:fixed; z-index:40; display:inline-flex; align-items:center; gap:.5em;
-  font-family:-apple-system,"Segoe UI",Roboto,sans-serif; font-size:16px; font-weight:600;
-  padding:11px 18px; border-radius:999px; cursor:pointer; text-decoration:none;
-  box-shadow:0 6px 20px rgba(0,62,116,.28); transition:transform .12s ease, box-shadow .12s ease, opacity .25s ease;
-  border:none;
-}
+.floating-btn{ position:fixed; z-index:40; display:inline-flex; align-items:center; gap:.5em;
+  font-family:'LM Sans',sans-serif; font-size:16px; font-weight:700; padding:11px 18px; border-radius:999px;
+  cursor:pointer; text-decoration:none; box-shadow:0 6px 20px rgba(0,62,116,.28);
+  transition:transform .12s ease, box-shadow .12s ease, opacity .25s ease; border:none; }
 .floating-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(0,62,116,.35); }
 .floating-btn svg{ width:18px; height:18px; }
-
-#dlPdf{ right:26px; bottom:64px; background:var(--camb); color:#fff; border-bottom:none; }
-#playNarrated{ left:26px; bottom:26px; background:#fff; color:var(--camb); border:2px solid var(--camb); }
+#dlPdf{ right:26px; bottom:calc(var(--fl-h) + 22px); background:var(--camb); color:#fff; border-bottom:none; }
+#playNarrated{ left:26px; bottom:calc(var(--fl-h) + 22px); background:#fff; color:var(--camb); border:2px solid var(--camb); }
 #playNarrated.playing{ background:var(--camb); color:#fff; }
 .floating-btn.hidden{ opacity:0; pointer-events:none; }
 
-/* narration availability dot on slide-number area */
-#narrStatus{
-  position:fixed; left:26px; bottom:72px; z-index:40; font-size:13px; color:var(--muted);
-}
-
-/* ---- QR card on title ---- */
-.reveal .qr{
-  display:inline-flex; flex-direction:column; align-items:center; gap:.3em;
-  background:#fff; border:1px solid var(--line); border-radius:14px; padding:.7em;
-  box-shadow:0 6px 22px rgba(0,0,0,.10);
-}
+/* ---- QR card ---- */
+.reveal .qr{ display:inline-flex; flex-direction:column; align-items:center; gap:.3em; background:#fff;
+  border:1px solid var(--line); border-radius:14px; padding:.7em; box-shadow:0 6px 22px rgba(0,0,0,.10); }
 .reveal .qr img{ width:150px; height:150px; box-shadow:none; border-radius:6px; }
 .reveal .qr span{ font-size:.5em; color:var(--muted); }
 
-/* ---- speaker-mode friendliness / print ---- */
-@media print{ .floating-btn,#narrStatus,.anim-demo{ display:none !important; } }
+body.overview-active .floating-btn{ display:none !important; }
+
+@media print{ .floating-btn,#headline,#footline,.anim-demo{ display:none !important; } }

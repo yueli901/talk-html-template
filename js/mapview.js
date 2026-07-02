@@ -43,6 +43,8 @@ var MapView = (function () {
     window.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' || e.keyCode === 27) { e.preventDefault(); toggle(); }
     });
+
+    if (/[?&]map=1/.test(location.search)) window.setTimeout(openMap, 500);  // deep-link to map view
   }
 
   function build() {
@@ -100,10 +102,11 @@ var MapView = (function () {
   function fitView() {
     var ow = overlay.clientWidth, oh = overlay.clientHeight;
     var cw = parseFloat(canvas.style.width), ch = parseFloat(canvas.style.height);
-    var s = Math.min(ow / cw, oh / ch) * 0.92;
+    var s = clamp(Math.min(ow / cw, oh / ch) * 0.95, 0.42, 1);  // stay readable
     state.scale = s;
-    state.x = (ow - cw * s) / 2;
-    state.y = (oh - ch * s) / 2;
+    var sw = cw * s, sh = ch * s;
+    state.x = sw < ow ? (ow - sw) / 2 : 40;   // fits → centre; else start top-left and pan
+    state.y = sh < oh ? (oh - sh) / 2 : 40;
     apply(true);
   }
 

@@ -129,14 +129,24 @@ the network unless you host the clips in the repo. Bump `CACHE` in `sw.js` when 
 
 ## PDF handout
 
-The floating button serves `slides.pdf`. Regenerate it from the HTML with
-[decktape](https://github.com/astefanutti/decktape) (recommended — handles animations):
+The floating button serves `slides.pdf`. Regenerate it from the HTML by running:
 
 ```bash
-npx decktape reveal "http://localhost:8123/index.html" slides.pdf
+./make-pdf.sh
 ```
 
-or run `./make-pdf.sh` (headless Chrome; it hides looping animations for the export).
+It uses [decktape](https://github.com/astefanutti/decktape) when Node is available
+(best — handles animations), and otherwise falls back to `make-pdf-cdp.py`, a
+standard-library Python exporter that needs only Google Chrome (no Node).
+
+Why a custom exporter and not plain `chrome --print-to-pdf`: reveal.js builds its
+print layout in an async coroutine (a few `requestAnimationFrame` yields before the
+`.pdf-page` elements exist), so a fire-and-forget `--print-to-pdf` captures too
+early and yields a blank one-page file. `make-pdf-cdp.py` drives Chrome over the
+DevTools Protocol, waits until the `.pdf-page` wrappers and KaTeX have rendered and
+settled, then calls `Page.printToPDF`. It serves the folder itself and uses a fresh
+Chrome profile each run so the service worker never serves a previously exported
+deck from cache. Override Chrome's path with the `CHROME` env var if needed.
 
 ## Regenerate the QR
 
